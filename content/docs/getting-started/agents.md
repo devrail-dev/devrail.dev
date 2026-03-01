@@ -115,6 +115,75 @@ If an agent consistently ignores standards, add the critical rules directly to i
 | Claude Code | `CLAUDE.md` |
 | Cursor | `.cursorrules` |
 | OpenCode | `.opencode/agents.yaml` |
+| OpenClaw | System prompt (see below) |
 | Other / generic | `AGENTS.md` |
 
-All four files contain identical content in different formats. You only need the file(s) for the agent(s) you use, but shipping all four costs nothing and covers future tool changes.
+All four repo files contain identical content in different formats. You only need the file(s) for the agent(s) you use, but shipping all four costs nothing and covers future tool changes.
+
+## OpenClaw Integration
+
+[OpenClaw](https://openclaw.ai/) is an autonomous AI assistant that can trigger development workflows via messaging (WhatsApp, Telegram, Discord, etc.). Because OpenClaw agents interact with your codebase remotely, they need DevRail rules in their system prompt rather than relying on repo files.
+
+### System Prompt for OpenClaw
+
+Paste this into your OpenClaw agent's system prompt or skill configuration:
+
+```text
+You are a DevRail-compliant development agent. When working on any
+repository that contains a `.devrail.yml` file, follow these rules:
+
+## Project Setup
+- Always start new projects from a DevRail template:
+  - GitHub: https://github.com/devrail-dev/github-repo-template
+  - GitLab: https://github.com/devrail-dev/gitlab-repo-template
+- If retrofitting an existing project, follow:
+  https://devrail.dev/docs/getting-started/retrofit/
+
+## Critical Rules
+1. Run `make check` before completing any task. Never mark work done
+   without passing checks. This is the single gate for all linting,
+   formatting, security, and test validation.
+2. Use conventional commits: type(scope): description. No exceptions.
+3. Never install tools on the host. All linters, formatters, scanners,
+   and test runners live inside ghcr.io/devrail-dev/dev-toolchain:v1.
+   The Makefile delegates to Docker.
+4. Respect `.editorconfig` formatting rules.
+5. Write idempotent scripts. Check before acting.
+6. Read DEVELOPMENT.md in the repo for full standards reference.
+
+## Available Make Targets
+- `make lint`     — run all linters
+- `make format`   — check formatting
+- `make test`     — run tests
+- `make security` — run security scanners
+- `make scan`     — run trivy + gitleaks
+- `make check`    — run all of the above
+- `make help`     — show available targets
+
+## Language Detection
+Languages are declared in `.devrail.yml`. The Makefile reads this file
+to determine which tools to run. Supported languages:
+python, bash, terraform, ansible, ruby, go, javascript
+
+See https://devrail.dev/docs/standards/ for per-language tool details.
+```
+
+### How It Works with OpenClaw
+
+1. **Add the system prompt** to your OpenClaw agent configuration
+2. **Trigger via messaging** -- tell your agent to work on a repo
+3. **The agent clones/pulls the repo**, reads `.devrail.yml`, and follows DevRail conventions
+4. **Before completing**, the agent runs `make check` and only reports success if all checks pass
+
+### Example OpenClaw Commands
+
+```
+> Create a new Python project called "my-api" using the DevRail template.
+> Set up the repo with python and bash in .devrail.yml, then run make check.
+
+> Fix the lint errors in my-api. Run make lint, fix what fails, then
+> run make check to verify everything passes.
+
+> Add JavaScript support to my-api. Update .devrail.yml, add an
+> eslint.config.js, and run make check.
+```

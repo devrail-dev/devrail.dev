@@ -54,7 +54,7 @@ Run `make check` and get consistent results everywhere -- your laptop, CI, or an
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fa-cube" title="One Container" %}}
-The `dev-toolchain` container includes linters, formatters, security scanners, and test runners for Python, Bash, Terraform, Ansible, and Ruby. Pin a version and forget about tool management.
+The `dev-toolchain` container includes linters, formatters, security scanners, and test runners for Python, Bash, Terraform, Ansible, Ruby, Go, and JavaScript/TypeScript. Pin a version and forget about tool management.
 
 [Learn About the Container](/docs/container/)
 {{% /blocks/feature %}}
