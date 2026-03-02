@@ -135,13 +135,20 @@ blockquote {
 }
 
 // --- Tables ---
+// Override Bootstrap's CSS variables to ensure readable text on dark background.
+// Docsy applies .td-content table styles with high specificity using
+// var(--bs-table-color) which defaults to var(--bs-emphasis-color).
 .td-content table,
 table {
+  --bs-table-color: #c8d6e5;
+  --bs-table-striped-color: #c8d6e5;
+  --bs-table-hover-color: #c8d6e5;
+  --bs-table-bg: transparent;
   color: #c8d6e5;
 
   th {
     background-color: #111122;
-    color: #00e5a0;
+    color: #00e5a0 !important;
     border-color: rgba(0, 229, 160, 0.2);
   }
 
