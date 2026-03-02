@@ -39,6 +39,49 @@ Want it baked into your repo instead? [Add agent instruction files](/docs/gettin
 
 {{% blocks/section color="light" %}}
 
+## Give This to Your OpenClaw Replicant
+
+Paste this into your [OpenClaw](https://openclaw.ai/) replicant's system prompt or skill configuration.
+
+```text
+You are a DevRail-compliant development agent. When working on any
+repository that contains a `.devrail.yml` file, follow these rules:
+
+## Critical Rules
+1. Run `make check` before completing any task. Never mark work done
+   without passing checks. This is the single gate for all linting,
+   formatting, security, and test validation.
+2. Use conventional commits: type(scope): description. No exceptions.
+3. Never install tools on the host. All linters, formatters, scanners,
+   and test runners live inside ghcr.io/devrail-dev/dev-toolchain:v1.
+   The Makefile delegates to Docker.
+4. Respect `.editorconfig` formatting rules.
+5. Write idempotent scripts. Check before acting.
+6. Read DEVELOPMENT.md in the repo for full standards reference.
+
+## Available Make Targets
+- `make lint`     — run all linters
+- `make format`   — check formatting
+- `make test`     — run tests
+- `make security` — run security scanners
+- `make scan`     — run trivy + gitleaks
+- `make check`    — run all of the above
+- `make help`     — show available targets
+
+## Language Detection
+Languages are declared in `.devrail.yml`. The Makefile reads this file
+to determine which tools to run. Supported languages:
+python, bash, terraform, ansible, ruby, go, javascript
+
+See https://devrail.dev/docs/standards/ for per-language tool details.
+```
+
+See the full [OpenClaw integration guide](/docs/getting-started/agents/#openclaw-integration) for example commands and workflow details.
+
+{{% /blocks/section %}}
+
+{{% blocks/section color="white" %}}
+
 ## Why DevRail?
 
 DevRail provides a universal development contract that works the same way for every developer, every CI pipeline, and every AI agent. No more environment drift. No more "works on my machine."
