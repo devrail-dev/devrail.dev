@@ -19,7 +19,7 @@ The following table shows the default tool for each concern per language. These 
 | Tests | pytest | bats | terratest | molecule | rspec | go test | vitest |
 | Type Check | mypy | -- | -- | -- | sorbet | -- | tsc |
 | Docs | -- | -- | terraform-docs | -- | -- | -- | -- |
-| Universal | trivy, gitleaks | trivy, gitleaks | trivy, gitleaks | trivy, gitleaks | trivy, gitleaks | trivy, gitleaks | trivy, gitleaks |
+| Universal | trivy, gitleaks, git-cliff | trivy, gitleaks, git-cliff | trivy, gitleaks, git-cliff | trivy, gitleaks, git-cliff | trivy, gitleaks, git-cliff | trivy, gitleaks, git-cliff | trivy, gitleaks, git-cliff |
 
 A `--` entry means the concern does not apply to that language. Universal tools run for all projects regardless of declared languages.
 
@@ -35,6 +35,7 @@ Each Makefile target runs the relevant tools for all languages declared in `.dev
 | `make security` | bandit, semgrep, tfsec, checkov, brakeman, bundler-audit, govulncheck, npm audit |
 | `make scan` | trivy, gitleaks (universal -- all projects) |
 | `make docs` | terraform-docs |
+| `make changelog` | git-cliff (generate CHANGELOG.md from conventional commits) |
 | `make check` | All of the above in sequence |
 
 ## Per-Language Pages
@@ -46,7 +47,7 @@ Each Makefile target runs the relevant tools for all languages declared in `.dev
 - [Ruby Standards](/docs/standards/ruby/) -- rubocop, brakeman, bundler-audit, rspec, reek, sorbet
 - [Go Standards](/docs/standards/go/) -- golangci-lint, gofumpt, govulncheck, go test
 - [JavaScript Standards](/docs/standards/javascript/) -- eslint, prettier, npm audit, vitest, tsc
-- [Universal Security](/docs/standards/universal/) -- trivy, gitleaks
+- [Universal Security](/docs/standards/universal/) -- trivy, gitleaks, git-cliff
 
 ## Consistent Page Structure
 

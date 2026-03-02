@@ -68,6 +68,7 @@ If you do not want to commit DevRail files yet, you can paste instructions direc
 > - `make format` -- check formatting
 > - `make test` -- run tests
 > - `make security` -- run security scanners
+> - `make changelog` -- generate CHANGELOG.md from conventional commits
 > - `make check` -- run everything
 >
 > Languages are declared in `.devrail.yml`. The Makefile reads this file to determine which tools to run. See https://devrail.dev/docs/standards/ for per-language tool details.
@@ -162,6 +163,7 @@ the retrofit guide at: https://devrail.dev/docs/getting-started/retrofit/
 - `make test`     — run tests
 - `make security` — run security scanners
 - `make scan`     — run trivy + gitleaks
+- `make changelog` — generate CHANGELOG.md from conventional commits
 - `make check`    — run all of the above
 - `make help`     — show available targets
 

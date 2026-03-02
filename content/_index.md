@@ -28,7 +28,7 @@ Key rules:
    ghcr.io/devrail-dev/dev-toolchain:v1 container via `make` targets.
 4. Respect `.editorconfig` formatting rules.
 
-Available make targets: lint, format, test, security, scan, check (all).
+Available make targets: lint, format, test, security, scan, changelog, check (all).
 Languages are declared in `.devrail.yml`. See https://devrail.dev/docs/standards/
 for per-language tool details.
 ```
@@ -77,6 +77,7 @@ the retrofit guide at: https://devrail.dev/docs/getting-started/retrofit/
 - `make test`     — run tests
 - `make security` — run security scanners
 - `make scan`     — run trivy + gitleaks
+- `make changelog` — generate CHANGELOG.md from conventional commits
 - `make check`    — run all of the above
 - `make help`     — show available targets
 

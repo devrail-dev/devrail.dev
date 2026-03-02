@@ -181,6 +181,7 @@ The dev-toolchain container includes all tools needed for every supported langua
 |---|---|
 | trivy | Vulnerability scanning (filesystem and images) |
 | gitleaks | Secret detection |
+| git-cliff | Changelog generation from conventional commits |
 | pre-commit | Git hook management |
 
 ## Running Tools Directly
