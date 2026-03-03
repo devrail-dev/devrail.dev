@@ -16,6 +16,7 @@ languageCode = "en-us"
   github_repo = "https://github.com/devrail-dev/devrail.dev"
   github_project_repo = "https://github.com/devrail-dev"
   offlineSearch = false
+  images = ["images/devrail-icon.png"]
 
 [[params.links.developer]]
   name = "GitHub"
