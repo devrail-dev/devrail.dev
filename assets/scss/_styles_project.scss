@@ -111,12 +111,19 @@ pre {
 
 code {
   color: #00e5a0;
-  background-color: rgba(0, 229, 160, 0.08);
+  background-color: rgba(0, 229, 160, 0.1);
   padding: 0.15em 0.35em;
   border-radius: 3px;
 }
 
-pre code {
+// Win specificity over Docsy/Bootstrap in content areas
+.td-content code {
+  color: #00e5a0;
+  background-color: rgba(0, 229, 160, 0.1);
+}
+
+pre code,
+.td-content pre code {
   background-color: transparent;
   padding: 0;
 }
