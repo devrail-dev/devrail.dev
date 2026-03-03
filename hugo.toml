@@ -17,6 +17,11 @@ languageCode = "en-us"
   github_project_repo = "https://github.com/devrail-dev"
   offlineSearch = false
 
+[[params.links.developer]]
+  name = "GitHub"
+  url = "https://github.com/devrail-dev"
+  icon = "fab fa-github"
+
 [params.ui]
   sidebar_menu_compact = true
   breadcrumb_disable = false
