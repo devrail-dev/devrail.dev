@@ -110,22 +110,31 @@ pre {
 }
 
 code {
-  color: #00e5a0;
-  background-color: rgba(0, 229, 160, 0.1);
+  color: #00cc8a;
+  background-color: transparent;
+  border: 1px solid rgba(0, 229, 160, 0.2);
   padding: 0.15em 0.35em;
   border-radius: 3px;
 }
 
-// Win specificity over Docsy/Bootstrap in content areas
+// Override Docsy's .td-content p code / li>code / table code
+// which sets color:inherit and background-color:var(--td-pre-bg)
+.td-content p code,
+.td-content li > code,
+.td-content table code,
 .td-content code {
-  color: #00e5a0;
-  background-color: rgba(0, 229, 160, 0.1);
+  color: #00cc8a;
+  background-color: transparent;
+  border: 1px solid rgba(0, 229, 160, 0.2);
 }
 
 pre code,
-.td-content pre code {
+.td-content pre code,
+.td-content p pre code {
   background-color: transparent;
+  border: none;
   padding: 0;
+  color: #c8d6e5;
 }
 
 // --- Blockquotes (used for agent prompts) ---
