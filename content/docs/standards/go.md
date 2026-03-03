@@ -94,3 +94,4 @@ repos:
 - **Go tools use `./...` patterns.** The `./...` pattern matches all packages in the module. This is the standard Go convention for recursive operations.
 - **`go.sum` presence gates security scanning.** If no `go.sum` file exists, govulncheck is skipped because there are no module dependencies to scan.
 - **All tools are pre-installed in the dev-toolchain container.** Do not install them on the host.
+- For cross-cutting coding practices and git workflow standards that apply to all languages, see [Coding Practices](/docs/standards/practices/).

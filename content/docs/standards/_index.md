@@ -40,6 +40,7 @@ Each Makefile target runs the relevant tools for all languages declared in `.dev
 
 ## Per-Language Pages
 
+- [Coding Practices](/docs/standards/practices/) -- principles, error handling, testing, git workflow
 - [Python Standards](/docs/standards/python/) -- ruff, bandit, semgrep, pytest, mypy
 - [Bash Standards](/docs/standards/bash/) -- shellcheck, shfmt, bats
 - [Terraform Standards](/docs/standards/terraform/) -- tflint, terraform fmt, tfsec, checkov, terratest, terraform-docs
@@ -51,7 +52,7 @@ Each Makefile target runs the relevant tools for all languages declared in `.dev
 
 ## Consistent Page Structure
 
-Each per-language page follows a consistent structure:
+The Coding Practices page covers cross-cutting standards (principles, error handling, testing, git workflow) that apply to all languages. Each per-language page follows a consistent structure:
 
 1. **Tools** -- table of tools with category, name, and purpose
 2. **Configuration** -- configuration examples with inline comments

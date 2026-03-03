@@ -157,3 +157,4 @@ repos:
 - **`sorbet` is optional.** Projects can incrementally adopt it by adding `# typed:` sigils to Ruby files. The `sorbet-runtime` gem provides runtime type annotations.
 - **All tools are pre-installed in the dev-toolchain container.** Do not install them on the host.
 - **Rails rspec in CI:** The dev-toolchain container handles static analysis (rubocop, reek, brakeman, bundler-audit) but Rails integration tests typically need a database service (Postgres, MySQL). In CI, run a separate rspec job with the project's own `ruby` image, Bundler, and a database service. The DevRail `make _test` target handles rspec for simple cases; use a dedicated CI job when your tests require external services.
+- For cross-cutting coding practices and git workflow standards that apply to all languages, see [Coding Practices](/docs/standards/practices/).
