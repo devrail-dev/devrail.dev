@@ -70,6 +70,9 @@ the retrofit guide at: https://devrail.dev/docs/getting-started/retrofit/
 4. Respect `.editorconfig` formatting rules.
 5. Write idempotent scripts. Check before acting.
 6. Read DEVELOPMENT.md in the repo for full standards reference.
+7. Never suppress failing checks. Fix the root cause, don't comment
+   out code, add suppression annotations, or mark CI jobs as
+   allowed-to-fail.
 
 ## Available Make Targets
 - `make lint`     — run all linters
