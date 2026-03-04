@@ -6,7 +6,7 @@ linkTitle: "DevRail"
 {{% blocks/cover title="DevRail" image_anchor="top" height="full" color="primary" %}}
 One Makefile. One Container. Every Language.
 
-Opinionated development standards for teams that ship with AI agents.
+Guard rails for AI agents and the developers who ship with them.
 
 {{% blocks/link-down color="info" %}}
 {{% /blocks/cover %}}
@@ -97,7 +97,7 @@ See the full [OpenClaw integration guide](/docs/getting-started/agents/#openclaw
 
 ## Why DevRail?
 
-DevRail provides a universal development contract that works the same way for every developer, every CI pipeline, and every AI agent. No more environment drift. No more "works on my machine."
+Your agents don't read your conventions. They skip your linters, ignore your formatters, and commit code that fails CI. DevRail gives them one instruction and one gate -- `make check` -- that enforces every standard automatically. Same contract for your agents, your CI, and you.
 
 {{% /blocks/section %}}
 
