@@ -78,7 +78,7 @@ See the [agent setup guide](/docs/getting-started/agents/) for detailed configur
 
 DevRail is in **beta**. The core contract -- Makefile, container, `.devrail.yml` -- is stable and used in production projects. Language support for all seven ecosystems ships in the `v1` container image. Standards, tool versions, and defaults may still change based on real-world usage.
 
-What works today: new projects from templates, retrofitting existing repos, CI integration, agent instruction files. What's still evolving: the `make fix` auto-remediation workflow, additional language ecosystems, and edge cases we haven't hit yet.
+What works today: new projects from templates, retrofitting existing repos, CI integration, agent instruction files, and `make fix` auto-remediation. What's still evolving: additional language ecosystems and edge cases we haven't hit yet.
 
 If you run into problems or have opinions about how things should work, [open an issue](https://github.com/devrail-dev/devrail.dev/issues). Bug reports, feature requests, and "this default is wrong" complaints are all welcome.
 
