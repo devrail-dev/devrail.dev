@@ -70,6 +70,9 @@ the retrofit guide at: https://devrail.dev/docs/getting-started/retrofit/
 4. Respect `.editorconfig` formatting rules.
 5. Write idempotent scripts. Check before acting.
 6. Read DEVELOPMENT.md in the repo for full standards reference.
+7. Never suppress failing checks. Fix the root cause, don't comment
+   out code, add suppression annotations, or mark CI jobs as
+   allowed-to-fail.
 
 ## Available Make Targets
 - `make lint`     — run all linters
@@ -84,7 +87,7 @@ the retrofit guide at: https://devrail.dev/docs/getting-started/retrofit/
 ## Language Detection
 Languages are declared in `.devrail.yml`. The Makefile reads this file
 to determine which tools to run. Supported languages:
-python, bash, terraform, ansible, ruby, go, javascript
+python, bash, terraform, ansible, ruby, go, javascript, rust
 
 See https://devrail.dev/docs/standards/ for per-language tool details.
 ```
@@ -110,7 +113,7 @@ Run `make check` and get consistent results everywhere -- your laptop, CI, or an
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fa-cube" title="One Container" %}}
-The `dev-toolchain` container includes linters, formatters, security scanners, and test runners for Python, Bash, Terraform, Ansible, Ruby, Go, and JavaScript/TypeScript. Pin a version and forget about tool management.
+The `dev-toolchain` container includes linters, formatters, security scanners, and test runners for Python, Bash, Terraform, Ansible, Ruby, Go, JavaScript/TypeScript, and Rust. Pin a version and forget about tool management.
 
 [Learn About the Container](/docs/container/)
 {{% /blocks/feature %}}

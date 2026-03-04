@@ -51,14 +51,14 @@ Already have a project? The [retrofit guide](/docs/getting-started/retrofit/) wa
 
 ## What's in the Container
 
-The `dev-toolchain` container includes tools for seven language ecosystems. Each language has opinionated defaults documented in the [standards reference](/docs/standards/).
+The `dev-toolchain` container includes tools for eight language ecosystems. Each language has opinionated defaults documented in the [standards reference](/docs/standards/).
 
-| Concern | Python | Bash | Terraform | Ansible | Ruby | Go | JS/TS |
-|---|---|---|---|---|---|---|---|
-| Linter | ruff | shellcheck | tflint | ansible-lint | rubocop | golangci-lint | eslint |
-| Formatter | ruff | shfmt | terraform fmt | -- | rubocop | gofumpt | prettier |
-| Security | bandit | -- | tfsec | -- | brakeman | govulncheck | npm audit |
-| Tests | pytest | bats | terratest | molecule | rspec | go test | vitest |
+| Concern | Python | Bash | Terraform | Ansible | Ruby | Go | JS/TS | Rust |
+|---|---|---|---|---|---|---|---|---|
+| Linter | ruff | shellcheck | tflint | ansible-lint | rubocop | golangci-lint | eslint | clippy |
+| Formatter | ruff | shfmt | terraform fmt | -- | rubocop | gofumpt | prettier | rustfmt |
+| Security | bandit | -- | tfsec | -- | brakeman | govulncheck | npm audit | cargo-audit |
+| Tests | pytest | bats | terratest | molecule | rspec | go test | vitest | cargo test |
 
 Universal tools -- trivy, gitleaks, and git-cliff -- run for every project regardless of language.
 
@@ -76,7 +76,7 @@ See the [agent setup guide](/docs/getting-started/agents/) for detailed configur
 
 ## Current Status
 
-DevRail is in **beta**. The core contract -- Makefile, container, `.devrail.yml` -- is stable and used in production projects. Language support for all seven ecosystems ships in the `v1` container image. Standards, tool versions, and defaults may still change based on real-world usage.
+DevRail is in **beta**. The core contract -- Makefile, container, `.devrail.yml` -- is stable and used in production projects. Language support for all eight ecosystems ships in the `v1` container image. Standards, tool versions, and defaults may still change based on real-world usage.
 
 What works today: new projects from templates, retrofitting existing repos, CI integration, agent instruction files, and `make fix` auto-remediation. What's still evolving: additional language ecosystems and edge cases we haven't hit yet.
 
