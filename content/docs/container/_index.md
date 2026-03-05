@@ -184,6 +184,11 @@ The dev-toolchain container includes all tools needed for every supported langua
 | git-cliff | Changelog generation from conventional commits |
 | pre-commit | Git hook management |
 
+## Tool Version History
+
+For the exact versions of every tool in each container release, see
+[Tool Versions](/docs/container/versions/).
+
 ## Running Tools Directly
 
 While the Makefile delegation pattern is the recommended approach, you can invoke the container directly for debugging or exploration:
