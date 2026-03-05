@@ -14,7 +14,7 @@ The following table shows the default tool for each concern per language. These 
 | Concern | Python | Bash | Terraform | Ansible | Ruby | Go | JavaScript | Rust |
 |---|---|---|---|---|---|---|---|---|
 | Linter | ruff | shellcheck | tflint | ansible-lint | rubocop, reek | golangci-lint | eslint | clippy |
-| Formatter | ruff format | shfmt | terraform fmt | -- | rubocop | gofumpt | prettier | rustfmt |
+| Formatter | ruff format | shfmt | terraform fmt, terragrunt hclfmt | -- | rubocop | gofumpt | prettier | rustfmt |
 | Security | bandit, semgrep | -- | tfsec, checkov | -- | brakeman, bundler-audit | govulncheck | npm audit | cargo-audit, cargo-deny |
 | Tests | pytest | bats | terratest | molecule | rspec | go test | vitest | cargo test |
 | Type Check | mypy | -- | -- | -- | sorbet | -- | tsc | -- |
@@ -30,8 +30,8 @@ Each Makefile target runs the relevant tools for all languages declared in `.dev
 | Target | What It Runs |
 |---|---|
 | `make lint` | ruff check, shellcheck, tflint, ansible-lint, mypy, rubocop, reek, golangci-lint, eslint, tsc, clippy |
-| `make format` | ruff format --check, shfmt -d, terraform fmt -check, rubocop --check, gofumpt -d, prettier --check, cargo fmt --check |
-| `make fix` | ruff format, shfmt -w, terraform fmt, rubocop -a, gofumpt -w, prettier --write, cargo fmt |
+| `make format` | ruff format --check, shfmt -d, terraform fmt -check, terragrunt hclfmt --terragrunt-check, rubocop --check, gofumpt -d, prettier --check, cargo fmt --check |
+| `make fix` | ruff format, shfmt -w, terraform fmt, terragrunt hclfmt, rubocop -a, gofumpt -w, prettier --write, cargo fmt |
 | `make test` | pytest, bats, terratest, molecule, rspec, go test, vitest, cargo test |
 | `make security` | bandit, semgrep, tfsec, checkov, brakeman, bundler-audit, govulncheck, npm audit, cargo-audit, cargo-deny |
 | `make scan` | trivy, gitleaks (universal -- all projects) |
@@ -44,7 +44,7 @@ Each Makefile target runs the relevant tools for all languages declared in `.dev
 - [Coding Practices](/docs/standards/practices/) -- principles, error handling, testing, git workflow
 - [Python Standards](/docs/standards/python/) -- ruff, bandit, semgrep, pytest, mypy
 - [Bash Standards](/docs/standards/bash/) -- shellcheck, shfmt, bats
-- [Terraform Standards](/docs/standards/terraform/) -- tflint, terraform fmt, tfsec, checkov, terratest, terraform-docs
+- [Terraform Standards](/docs/standards/terraform/) -- tflint, terraform fmt, terragrunt hclfmt, tfsec, checkov, terratest, terraform-docs
 - [Ansible Standards](/docs/standards/ansible/) -- ansible-lint, molecule
 - [Ruby Standards](/docs/standards/ruby/) -- rubocop, brakeman, bundler-audit, rspec, reek, sorbet
 - [Go Standards](/docs/standards/go/) -- golangci-lint, gofumpt, govulncheck, go test
