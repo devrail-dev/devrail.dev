@@ -18,6 +18,9 @@ languageCode = "en-us"
   offlineSearch = false
   images = ["images/devrail-icon.png"]
 
+[params.copyright]
+  authors = "[Matthew Mellor](https://matthew.mellor.earth)"
+
 [[params.links.developer]]
   name = "GitHub"
   url = "https://github.com/devrail-dev"
