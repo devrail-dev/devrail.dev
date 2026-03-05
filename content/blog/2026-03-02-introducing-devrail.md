@@ -64,7 +64,7 @@ Universal tools -- trivy, gitleaks, and git-cliff -- run for every project regar
 
 ## Agent-Ready by Default
 
-DevRail was built with AI coding agents in mind. The template repositories ship with instruction files for Claude Code (`CLAUDE.md`), Cursor (`.cursorrules`), OpenCode (`.opencode/agents.yaml`), and a generic `AGENTS.md`. Each file inlines six critical rules so agents follow the standard even if they don't read cross-file references.
+DevRail was built with AI coding agents in mind. The template repositories ship with instruction files for Claude Code (`CLAUDE.md`), Cursor (`.cursorrules`), OpenCode (`.opencode/agents.yaml`), and a generic `AGENTS.md`. Each file inlines eight critical rules so agents follow the standard even if they don't read cross-file references.
 
 The shortest path to agent compliance:
 
