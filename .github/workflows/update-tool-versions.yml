@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update-versions:
@@ -32,11 +33,22 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Commit and push
+      - name: Create pull request
         if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          branch="auto/update-tool-versions"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
           git add content/docs/container/versions.md
           git commit -m "docs(container): update tool versions page"
-          git push
+          git push -f origin "$branch"
+          if ! gh pr list --head "$branch" --state open --json number -q '.[0].number' | grep -q .; then
+            gh pr create \
+              --title "docs(container): update tool versions page" \
+              --body "Automated daily update of tool versions from the latest dev-toolchain release." \
+              --head "$branch" \
+              --base main
+          fi
