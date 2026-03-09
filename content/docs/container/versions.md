@@ -12,5 +12,5 @@ This page shows the exact tool versions shipped in each release of the
 [dev-toolchain container](/docs/container/). It is updated automatically
 when new releases are published.
 
-No releases with tool version manifests are available yet. Version data
-will appear here after the next dev-toolchain release.
+No releases with tool version manifests are available yet.
+Version data will appear here after the next dev-toolchain release.
