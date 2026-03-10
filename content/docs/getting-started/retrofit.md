@@ -2,22 +2,96 @@
 title: "Retrofit Existing Project"
 linkTitle: "Retrofit"
 weight: 20
-description: "Add DevRail standards to an existing repository."
+description: "Add DevRail standards to an existing repository using devrail init."
 ---
 
-If you already have a repository and want to adopt DevRail standards, follow this guide to add the necessary configuration files without disrupting your existing code.
+If you already have a repository and want to adopt DevRail standards, `devrail init` handles everything — generating configuration files, backing up conflicting files, and merging `.gitignore` patterns.
 
-## Step 1: Copy DevRail Files
+## Recommended: `devrail init`
 
-Copy the following files from the DevRail template repository into your project root. You can download them individually or clone the template and copy them over.
+Run `devrail init` in your existing project directory:
+
+```bash
+cd my-existing-project
+
+# Interactive mode — choose languages, CI platform, and adoption layers
+curl -fsSL https://devrail.dev/init.sh | bash
+
+# Or non-interactive — specify everything up front
+curl -fsSL https://devrail.dev/init.sh | bash -s -- --all --languages python,bash --ci github --yes
+```
+
+### What Happens to Existing Files
+
+`devrail init` handles conflicts safely:
+
+| Scenario | Behavior |
+|---|---|
+| File does not exist | Created normally |
+| File already exists (interactive) | Prompts: **[s]kip**, **[o]verwrite**, or **[b]ackup + overwrite** |
+| File already exists (`--yes`) | Skipped (preserves your files) |
+| File already exists (`--force`) | Overwritten without prompting |
+| Existing Makefile (non-DevRail) | Backed up to `Makefile.pre-devrail`, DevRail Makefile written with include guidance |
+| Existing Makefile (DevRail markers) | Updated in-place between markers |
+| Existing `.gitignore` | DevRail patterns appended below a `# --- DevRail ---` marker (idempotent) |
+
+### Progressive Adoption
+
+You do not have to adopt everything at once. `devrail init` supports 4 layers that you can install incrementally:
+
+1. **Agent files only** (`--agents-only`) — CLAUDE.md, AGENTS.md, .cursorrules, .opencode/agents.yaml
+2. **Pre-commit hooks** — .pre-commit-config.yaml with language-aware hooks
+3. **Makefile + container** — Makefile, DEVELOPMENT.md, .editorconfig, .gitignore, .devrail.yml
+4. **CI pipelines** — GitHub Actions workflows or GitLab CI configuration
+
+In interactive mode, you are prompted for each layer. In non-interactive mode, use `--all` for everything or `--agents-only` for just agent files.
+
+### After Running `devrail init`
+
+```bash
+# Configure your languages in .devrail.yml (if not already set via --languages)
+# Edit .devrail.yml to list only the languages your project uses
+
+# Install git hooks
+make install-hooks
+
+# Run all DevRail checks against your existing code
+make check
+```
+
+Expect some findings on the first run — your existing code may not match DevRail formatting or linting standards. This is normal.
+
+### Fixing Findings
+
+Use `make fix` to auto-fix formatting issues in-place:
+
+```bash
+# Auto-fix formatting (runs inside the container)
+make fix
+```
+
+For linting issues that cannot be auto-fixed, address them manually following the guidance in the [Standards Reference](/docs/standards/).
+
+### Commit DevRail Files
+
+```bash
+# Stage all DevRail configuration files
+git add Makefile .devrail.yml .editorconfig .pre-commit-config.yaml DEVELOPMENT.md
+
+# Optionally stage agent instruction files
+git add CLAUDE.md AGENTS.md .cursorrules .opencode/agents.yaml
+
+# Commit using conventional commit format
+git commit -m "chore: add DevRail development standards"
+```
+
+## Alternative: Manual Setup
+
+If you prefer to copy files manually instead of using `devrail init`, download them from the template repository:
 
 ### Required Files
 
-These files are essential for DevRail to work:
-
 ```bash
-# Download required DevRail files from the GitHub template
-# Replace with your preferred method (curl, wget, manual copy)
 curl -O https://raw.githubusercontent.com/devrail-dev/github-repo-template/main/Makefile
 curl -O https://raw.githubusercontent.com/devrail-dev/github-repo-template/main/.devrail.yml
 curl -O https://raw.githubusercontent.com/devrail-dev/github-repo-template/main/.editorconfig
@@ -33,97 +107,14 @@ curl -O https://raw.githubusercontent.com/devrail-dev/github-repo-template/main/
 | `.pre-commit-config.yaml` | Pre-commit hook config | Recommended |
 | `DEVELOPMENT.md` | Canonical standards doc | Recommended |
 
-### Optional Files
-
-These files enhance the development experience but are not strictly required:
+### Optional Agent Files
 
 ```bash
-# Download optional agent instruction files
 curl -O https://raw.githubusercontent.com/devrail-dev/github-repo-template/main/CLAUDE.md
 curl -O https://raw.githubusercontent.com/devrail-dev/github-repo-template/main/AGENTS.md
 curl -O https://raw.githubusercontent.com/devrail-dev/github-repo-template/main/.cursorrules
 mkdir -p .opencode
 curl -o .opencode/agents.yaml https://raw.githubusercontent.com/devrail-dev/github-repo-template/main/.opencode/agents.yaml
-```
-
-| File | Purpose |
-|---|---|
-| `CLAUDE.md` | Claude Code agent instructions |
-| `AGENTS.md` | Generic agent instructions |
-| `.cursorrules` | Cursor agent instructions |
-| `.opencode/agents.yaml` | OpenCode agent instructions |
-
-## Step 2: Configure `.devrail.yml`
-
-Edit `.devrail.yml` to declare which languages your project uses:
-
-```yaml
-# .devrail.yml -- configure for your project
-languages:
-  - python    # Include if your project has Python code
-  - bash      # Include if your project has shell scripts
-  # - terraform  # Include if your project has Terraform configs
-  # - ansible    # Include if your project has Ansible playbooks
-
-fail_fast: false
-log_format: json
-```
-
-Only list languages that your project actually uses. The Makefile reads this file to determine which tools to run.
-
-## Step 3: Review Your `.gitignore`
-
-Make sure your `.gitignore` includes common DevRail patterns. Add these lines if they are not already present:
-
-```gitignore
-# DevRail / Editor
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-*~
-```
-
-## Step 4: Install Pre-Commit Hooks
-
-```bash
-# Install git hooks for local enforcement
-make install-hooks
-```
-
-This command sets up pre-commit hooks for formatting, linting, and secret detection on every commit, plus a pre-push hook that runs `make check` before every push.
-
-## Step 5: Run Your First Check
-
-```bash
-# Run all DevRail checks against your existing code
-make check
-```
-
-Expect some findings on the first run -- your existing code may not match DevRail formatting or linting standards. This is normal.
-
-### Fixing Findings
-
-Use `make fix` to auto-fix formatting issues in-place:
-
-```bash
-# Auto-fix formatting (runs inside the container)
-make fix
-```
-
-For linting issues that cannot be auto-fixed, address them manually following the guidance in the [Standards Reference](/docs/standards/).
-
-## Step 6: Commit DevRail Files
-
-```bash
-# Stage all DevRail configuration files
-git add Makefile .devrail.yml .editorconfig .pre-commit-config.yaml DEVELOPMENT.md
-
-# Optionally stage agent instruction files
-git add CLAUDE.md AGENTS.md .cursorrules .opencode/agents.yaml
-
-# Commit using conventional commit format
-git commit -m "chore: add DevRail development standards"
 ```
 
 ## Handling Conflicts with Existing Configuration

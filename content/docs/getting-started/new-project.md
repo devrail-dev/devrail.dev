@@ -2,14 +2,45 @@
 title: "New Project"
 linkTitle: "New Project"
 weight: 10
-description: "Create a new DevRail-compliant project from a GitHub or GitLab template."
+description: "Create a new DevRail-compliant project using devrail init or a template."
 ---
 
-The fastest way to start a DevRail-compliant project is to create a repository from one of the official templates. All DevRail configuration files are included and pre-configured.
+## Recommended: `devrail init`
 
-## From GitHub Template
+The fastest way to start a new DevRail project is `devrail init`. Run it in an empty directory (or a freshly initialized git repo) and it generates all configuration files:
 
-### Step 1: Create the Repository
+```bash
+mkdir my-new-project && cd my-new-project
+git init
+
+# Interactive mode — prompts for languages and CI platform
+curl -fsSL https://devrail.dev/init.sh | bash
+
+# Or non-interactive — specify everything up front
+curl -fsSL https://devrail.dev/init.sh | bash -s -- --all --languages python,bash --ci github --yes
+```
+
+This generates all DevRail files including the Makefile, `.devrail.yml`, pre-commit config, agent instruction files, CI workflows, and documentation. See the [CLI Reference](/docs/getting-started/cli-reference/) for all options.
+
+After running `devrail init`:
+
+```bash
+# Install git hooks for local enforcement
+make install-hooks
+
+# Run all DevRail checks
+make check
+
+# Make your first commit
+git add .
+git commit -m "feat: initialize project with DevRail standards"
+```
+
+## Alternative: From a Template
+
+You can also create a repository directly from one of the official templates. All DevRail configuration files are included and pre-configured.
+
+### From GitHub Template
 
 Navigate to the [DevRail GitHub template](https://github.com/devrail-dev/github-repo-template) and click **"Use this template"** to create a new repository in your organization or personal account.
 
@@ -21,55 +52,7 @@ gh repo create my-new-project --template devrail-dev/github-repo-template --publ
 cd my-new-project
 ```
 
-### Step 2: Configure Your Languages
-
-Edit `.devrail.yml` to declare which languages your project uses. The Makefile reads this file to determine which tools to run.
-
-```yaml
-# .devrail.yml -- declare your project's languages
-languages:
-  - python
-  - bash
-
-fail_fast: false
-log_format: json
-```
-
-Supported languages: `python`, `bash`, `terraform`, `ansible`, `ruby`, `go`, `javascript`. List only the languages your project actually uses.
-
-### Step 3: Install Pre-Commit Hooks
-
-```bash
-# Install git hooks for local enforcement
-make install-hooks
-```
-
-This sets up pre-commit hooks that run formatting checks and secret detection on every commit, plus a pre-push hook that runs `make check` before every push.
-
-### Step 4: Run Your First Check
-
-```bash
-# Run all DevRail checks
-make check
-```
-
-The first run pulls the dev-toolchain Docker image (~1 GB). Subsequent runs use the cached image and complete in under 5 minutes.
-
-### Step 5: Make Your First Commit
-
-```bash
-# Stage all files
-git add .
-
-# Commit using conventional commit format
-git commit -m "feat: initialize project with DevRail standards"
-```
-
-The pre-commit hooks run automatically. If any check fails, fix the issue and commit again.
-
-## From GitLab Template
-
-### Step 1: Create the Project
+### From GitLab Template
 
 In GitLab, navigate to **New Project > Create from template > Custom** and select the DevRail GitLab template. Enter your project name and create the project.
 
@@ -87,13 +70,12 @@ git add .
 git commit -m "feat: initialize project with DevRail standards"
 ```
 
-### Step 2: Configure Your Languages
-
-Edit `.devrail.yml` just as described in the GitHub workflow above. The configuration file format is identical across platforms.
-
-### Step 3: Install Pre-Commit Hooks and Verify
+### After Creating from Template
 
 ```bash
+# Edit .devrail.yml to declare your project's languages
+# Configure your languages (see below)
+
 # Install git hooks
 make install-hooks
 
@@ -101,9 +83,25 @@ make install-hooks
 make check
 ```
 
-## What Is Included in the Template
+## Configure Your Languages
 
-Both templates ship with the following files:
+Edit `.devrail.yml` to declare which languages your project uses. The Makefile reads this file to determine which tools to run.
+
+```yaml
+# .devrail.yml -- declare your project's languages
+languages:
+  - python
+  - bash
+
+fail_fast: false
+log_format: json
+```
+
+Supported languages: `python`, `bash`, `terraform`, `ansible`, `ruby`, `go`, `javascript`, `rust`. List only the languages your project actually uses.
+
+## What Is Included
+
+Whether you use `devrail init` or a template, you get the following files:
 
 | File | Purpose |
 |---|---|
