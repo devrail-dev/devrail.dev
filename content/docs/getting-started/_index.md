@@ -2,10 +2,28 @@
 title: "Getting Started"
 linkTitle: "Getting Started"
 weight: 10
-description: "Quick start guides for creating new DevRail projects and retrofitting existing repositories."
+description: "Get up and running with DevRail in minutes using devrail init."
 ---
 
-Get up and running with DevRail in minutes. Whether you are starting a brand-new project or adding DevRail standards to an existing repository, the process is straightforward.
+Get up and running with DevRail in minutes. The `devrail init` script generates all DevRail configuration files in your project directory with a single command.
+
+## Quick Start
+
+```bash
+# Run devrail init in your project directory
+curl -fsSL https://devrail.dev/init.sh | bash
+```
+
+This launches an interactive wizard that asks which languages you use, which CI platform you want (GitHub Actions or GitLab CI), and which DevRail layers to install. It generates all configuration files, handles existing file conflicts safely, and is idempotent (safe to re-run).
+
+For non-interactive use:
+
+```bash
+# Generate everything for a Python project with GitHub Actions
+curl -fsSL https://devrail.dev/init.sh | bash -s -- --all --languages python --ci github --yes
+```
+
+See the [CLI Reference](/docs/getting-started/cli-reference/) for all options.
 
 ## Prerequisites
 
@@ -21,14 +39,15 @@ All other tools (linters, formatters, security scanners, test runners) are pre-i
 
 ## Choose Your Path
 
-- **[New Project](/docs/getting-started/new-project/)** -- Start a new repository from a DevRail template. All configuration files are pre-set.
+- **[New Project](/docs/getting-started/new-project/)** -- Start a new repository with `devrail init` or from a template.
 - **[Retrofit Existing Project](/docs/getting-started/retrofit/)** -- Add DevRail standards to a repository you already have.
 - **[Working with AI Agents](/docs/getting-started/agents/)** -- Get AI coding agents to follow DevRail standards in your projects.
+- **[CLI Reference](/docs/getting-started/cli-reference/)** -- Full `devrail init` command reference.
 - **[Compliance Badge](/docs/getting-started/badge/)** -- Add a DevRail compliance badge to your README.
 
 ## Verify Your Setup
 
-After setting up DevRail (either path), verify everything works by running:
+After setting up DevRail (any path), verify everything works by running:
 
 ```bash
 # Run all DevRail checks (linting, formatting, security, tests)

@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# devrail init — progressive adoption script
+/init.sh  https://raw.githubusercontent.com/devrail-dev/dev-toolchain/main/scripts/devrail-init.sh  302
