@@ -71,8 +71,9 @@ while IFS= read -r release; do
     continue
   fi
 
-  # Download the asset via the GitHub API (works for public and private repos)
-  versions_json=$(gh api "${asset_url}" --jq '.' 2>/dev/null) || continue
+  # Download the asset content via the GitHub API (octet-stream header required
+  # to get the file body instead of the asset metadata JSON)
+  versions_json=$(gh api "${asset_url}" -H "Accept: application/octet-stream" 2>/dev/null) || continue
 
   if ${first}; then
     echo "## Latest Release: ${tag}"
