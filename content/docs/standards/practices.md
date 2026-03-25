@@ -97,4 +97,4 @@ Use descriptive names: `test_<what>_<condition>_<expected>`.
 - These practices are enforced by code review, not by automated tooling. Automated enforcement is covered by the per-language tool standards.
 - When a practice here conflicts with a language-specific standard, the language-specific standard takes precedence.
 - These practices are embedded in every project's DEVELOPMENT.md via the DevRail template repos.
-- Full reference: [Coding Practices](https://gitlab.mfsoho.linkridge.net/OrgDocs/development-standards/-/blob/main/standards/coding-practices.md) and [Git Workflow](https://gitlab.mfsoho.linkridge.net/OrgDocs/development-standards/-/blob/main/standards/git-workflow.md) in the planning repo.
+- Full reference: [Coding Practices](https://github.com/devrail-dev/devrail-standards/blob/main/standards/coding-practices.md) and [Git Workflow](https://github.com/devrail-dev/devrail-standards/blob/main/standards/git-workflow.md) in the standards repo.
