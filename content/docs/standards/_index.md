@@ -52,6 +52,7 @@ Each Makefile target runs the relevant tools for all languages declared in `.dev
 - [Rust Standards](/docs/standards/rust/) -- clippy, rustfmt, cargo-audit, cargo-deny, cargo test
 - [Swift Standards](/docs/standards/swift/) -- SwiftLint, swift-format, swift test, xcodebuild
 - [Kotlin Standards](/docs/standards/kotlin/) -- ktlint, detekt, Gradle, Android Lint
+- [Kubernetes Standards](/docs/standards/kubernetes/) -- kustomize, kubeconform
 - [Universal Security](/docs/standards/universal/) -- trivy, gitleaks, git-cliff
 
 ## Consistent Page Structure
