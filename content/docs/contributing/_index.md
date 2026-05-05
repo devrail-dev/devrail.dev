@@ -20,6 +20,7 @@ Before contributing, familiarize yourself with:
 | Type | Where to Contribute | Guide |
 |---|---|---|
 | Add a new language | `dev-toolchain` + `devrail-standards` | [Adding a Language](/docs/contributing/adding-a-language/) |
+| Author a plugin | A new `devrail-plugin-<name>` repo | [Contributing a Plugin](/docs/contributing/adding-a-plugin/) |
 | Fix a bug | The repo where the bug exists | [Pull Requests](/docs/contributing/pull-requests/) |
 | Improve documentation | `devrail.dev` (this site) | [Pull Requests](/docs/contributing/pull-requests/) |
 | Update a tool version | `dev-toolchain` | [Pull Requests](/docs/contributing/pull-requests/) |
@@ -57,5 +58,6 @@ To contribute to other DevRail repos, the prerequisites are simpler -- only Dock
 ## Contribution Guides
 
 - [Adding a New Language](/docs/contributing/adding-a-language/) -- Step-by-step guide for adding language ecosystem support
+- [Contributing a Plugin](/docs/contributing/adding-a-plugin/) -- Author a plugin that ships a new language or tool integration without forking the core
 - [Submitting Pull Requests](/docs/contributing/pull-requests/) -- Workflow, conventional commits, CI expectations
 - [Ecosystem Structure](/docs/contributing/ecosystem/) -- Repo map and relationships
