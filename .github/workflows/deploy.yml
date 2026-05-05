@@ -31,7 +31,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          # Node 22 — postcss-cli's bin script now passes --permission,
+          # which Node 20 rejects as "bad option" and breaks Hugo's
+          # PostCSS pipeline.
+          node-version: '22'
 
       - name: Install PostCSS
         run: npm install postcss postcss-cli autoprefixer
