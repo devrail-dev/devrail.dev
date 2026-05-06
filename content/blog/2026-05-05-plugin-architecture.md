@@ -4,7 +4,7 @@ date: 2026-05-05
 description: "DevRail v1.10 introduces a plugin architecture so anyone can ship a new language or tool integration without forking dev-toolchain. Loader, lockfile, extended-image build, and execution dispatch all in one container, one make check."
 ---
 
-For the first eighteen months of DevRail, every new language meant a PR against `dev-toolchain` -- a Dockerfile change, an install script, Makefile blocks for `_lint` / `_format` / `_test` / `_security`, a standards doc, and a release. That worked while we were stabilizing the eight core ecosystems (Python, Bash, Terraform, Ansible, Ruby, Go, JavaScript/TypeScript, Rust, and most recently Swift and Kotlin), but it doesn't scale to the long tail of languages and tools real teams use.
+Up to now, every new language in DevRail has meant a PR against `dev-toolchain` -- a Dockerfile change, an install script, Makefile blocks for `_lint` / `_format` / `_test` / `_security`, a standards doc, and a release. That worked through the ten core ecosystems we shipped from MVP through v1.9 (Python, Bash, Terraform, Ansible, Ruby, Go, JavaScript/TypeScript, Rust, Swift, and Kotlin), but it doesn't scale to the long tail of languages and tools real teams use.
 
 **v1.10.6 ships a plugin architecture.** Anyone can now publish a `devrail-plugin-<name>` git repo, and any DevRail-managed project can declare it in `.devrail.yml` and pick up new tools at the next `make check`. No fork, no PR, no waiting on a release. The "one container, one make check" guarantee holds throughout.
 
