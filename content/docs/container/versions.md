@@ -12,9 +12,103 @@ This page shows the exact tool versions shipped in each release of the
 [dev-toolchain container](/docs/container/). It is updated automatically
 when new releases are published.
 
-## Latest Release: v1.10.2
+## Latest Release: v1.11.0
 
-Released 2026-05-03.
+Released 2026-05-05.
+
+| Tool | Version |
+|---|---|
+| ansible-lint | 26.4.0 |
+| bandit | 1.9.4 |
+| bats | 1.13.0 |
+| brakeman | 8.0.4 |
+| bundler-audit | 0.9.3 |
+| cargo | 1.95.0 |
+| cargo-audit | 0.22.1 |
+| cargo-deny | 0.19.4 |
+| checkov | 3.2.526 |
+| clippy | 0.1.95 |
+| eslint | 10.3.0 |
+| git-cliff | 2.12.0 |
+| gitleaks | 8.30.0 |
+| go | 1.25.9 |
+| gofumpt | 0.10.0 |
+| golangci-lint | 2.12.1 |
+| govulncheck | 1.25.9 |
+| molecule | 26.4.0 |
+| mypy | 1.20.2 |
+| node | 22.22.2 |
+| npm | 10.9.7 |
+| prettier | 3.8.3 |
+| pytest | 9.0.3 |
+| reek | 6.5.0 |
+| rspec | 3.13 |
+| rubocop | 1.86.1 |
+| ruff | 0.15.12 |
+| rustc | 1.95.0 |
+| rustfmt | 1.9.0-stable |
+| semgrep | 1.161.0 |
+| shellcheck | 0.9.0 |
+| shfmt | 3.13.1 |
+| srb | 0.6.13185 |
+| terraform | 1.15.1 |
+| terraform-docs | 0.22.0 |
+| tflint | 0.62.0 |
+| trivy | 0.70.0 |
+| tsc | 6.0.3 |
+| vitest | 4.1.5 |
+
+## Previous Releases
+
+<details>
+<summary><strong>v1.10.5</strong> (2026-05-05)</summary>
+
+| Tool | Version |
+|---|---|
+| ansible-lint | 26.4.0 |
+| bandit | 1.9.4 |
+| bats | 1.13.0 |
+| brakeman | 8.0.4 |
+| bundler-audit | 0.9.3 |
+| cargo | 1.95.0 |
+| cargo-audit | 0.22.1 |
+| cargo-deny | 0.19.4 |
+| checkov | 3.2.526 |
+| clippy | 0.1.95 |
+| eslint | 10.3.0 |
+| git-cliff | 2.12.0 |
+| gitleaks | 8.30.0 |
+| go | 1.25.9 |
+| gofumpt | 0.10.0 |
+| golangci-lint | 2.12.1 |
+| govulncheck | 1.25.9 |
+| molecule | 26.4.0 |
+| mypy | 1.20.2 |
+| node | 22.22.2 |
+| npm | 10.9.7 |
+| prettier | 3.8.3 |
+| pytest | 9.0.3 |
+| reek | 6.5.0 |
+| rspec | 3.13 |
+| rubocop | 1.86.1 |
+| ruff | 0.15.12 |
+| rustc | 1.95.0 |
+| rustfmt | 1.9.0-stable |
+| semgrep | 1.161.0 |
+| shellcheck | 0.9.0 |
+| shfmt | 3.13.1 |
+| srb | 0.6.13185 |
+| terraform | 1.15.1 |
+| terraform-docs | 0.22.0 |
+| tflint | 0.62.0 |
+| trivy | 0.70.0 |
+| tsc | 6.0.3 |
+| vitest | 4.1.5 |
+
+</details>
+
+<details>
+<summary><strong>v1.10.4</strong> (2026-05-04)</summary>
 
 | Tool | Version |
 |---|---|
@@ -58,7 +152,54 @@ Released 2026-05-03.
 | tsc | 6.0.3 |
 | vitest | 4.1.5 |
 
-## Previous Releases
+</details>
+
+<details>
+<summary><strong>v1.10.2</strong> (2026-05-03)</summary>
+
+| Tool | Version |
+|---|---|
+| ansible-lint | 26.4.0 |
+| bandit | 1.9.4 |
+| bats | 1.13.0 |
+| brakeman | 8.0.4 |
+| bundler-audit | 0.9.3 |
+| cargo | 1.95.0 |
+| cargo-audit | 0.22.1 |
+| cargo-deny | 0.19.4 |
+| checkov | 3.2.526 |
+| clippy | 0.1.95 |
+| eslint | 10.3.0 |
+| git-cliff | 2.12.0 |
+| gitleaks | 8.30.0 |
+| go | 1.25.9 |
+| gofumpt | 0.9.2 |
+| golangci-lint | 2.12.1 |
+| govulncheck | 1.25.9 |
+| molecule | 26.4.0 |
+| mypy | 1.20.2 |
+| node | 22.22.2 |
+| npm | 10.9.7 |
+| prettier | 3.8.3 |
+| pytest | 9.0.3 |
+| reek | 6.5.0 |
+| rspec | 3.13 |
+| rubocop | 1.86.1 |
+| ruff | 0.15.12 |
+| rustc | 1.95.0 |
+| rustfmt | 1.9.0-stable |
+| semgrep | 1.161.0 |
+| shellcheck | 0.9.0 |
+| shfmt | 3.13.1 |
+| srb | 0.6.13185 |
+| terraform | 1.15.1 |
+| terraform-docs | 0.22.0 |
+| tflint | 0.62.0 |
+| trivy | 0.70.0 |
+| tsc | 6.0.3 |
+| vitest | 4.1.5 |
+
+</details>
 
 <details>
 <summary><strong>v1.10.1</strong> (2026-05-03)</summary>
