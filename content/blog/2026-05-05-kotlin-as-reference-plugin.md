@@ -35,8 +35,8 @@ Then `make plugins-update && make check`. The build pipeline (Story 13.4) render
 
 We picked Kotlin as the reference extraction because:
 
-1. **It's the freshest core language.** Added in March 2026; the install logic is recent and well-tested. Lower risk of "I forget what this Dockerfile bit does."
-2. **Its install script is the heaviest in the matrix.** ktlint, detekt, and gradle each download from a separate upstream. JDK 21 from a builder stage. If extraction works for Kotlin, it works for almost anything.
+1. **It's the most recent core language.** Added in v1.8 (March 2026), so the install logic is fresh in the maintainers' minds.
+2. **Its install script pulls from multiple upstreams.** ktlint and detekt are downloaded binaries; gradle is a separate distribution; JDK 21 comes from a builder stage. The variety stresses the manifest's `copy_from_builder` + `install_script` contract more than a simpler language would.
 3. **The `copy_from_builder` pattern is non-trivially exercised.** A whole JDK tree gets COPY'd from `eclipse-temurin:21-jdk`. The plugin manifest reproduces that exactly without dev-toolchain having to know about Kotlin.
 
 ## The extraction recipe
@@ -55,26 +55,26 @@ The full text is [here](https://github.com/devrail-dev/devrail-standards/blob/ma
 
 ## What's regression-tested
 
-Plus the manifest-shape side: dev-toolchain ships a new smoke test in `tests/test-kotlin-plugin-extraction.sh` that:
+On the manifest-shape side, dev-toolchain ships a new smoke test in `tests/test-kotlin-plugin-extraction.sh` that:
 
 1. Validates `devrail-plugin-kotlin/plugin.devrail.yml` against schema_version 1.
 2. Resolves the plugin via `file://` URL from a vendored fixture (`tests/fixtures/kotlin-via-plugin/`) and confirms `.devrail.lock` records the resolved SHA + content_hash.
 3. Loads the plugin into the dispatcher cache and asserts name / version / devrail_min_version match.
 4. Walks every target (lint / format_check / format_fix / test / security) and confirms the cmd + gate shape parity with the in-core HAS_KOTLIN behaviour. Specific assertions on `ktlint && detekt-cli` chaining catch regressions where someone changes the manifest but forgets to keep both tools wired up.
 
-The full docker-build of `devrail-local:<hash>` with real ktlint/detekt/gradle downloads (~5 minutes) is NOT in CI — it's a maintainer-run manual check, same trade-off we made for the `minimal-v1` fixture in v1.10. CI gets a fast hermetic regression; humans do the heavy validation.
+The full docker-build of `devrail-local:<hash>` with real ktlint / detekt / gradle / JDK downloads is NOT in CI — it's a maintainer-run manual check, same trade-off we made for the `minimal-v1` fixture in v1.10. The build is heavy (multi-stage docker build + JVM-binary downloads + extracting a Gradle distribution); CI gets a fast hermetic regression instead, and humans do the heavy validation.
 
 ## What's coming in v2.0.0
 
 The reason this extraction is additive is that we've committed to back-compat through v1.x. Existing consumers with `languages: [kotlin]` should not have to do anything when v1.11 lands. Their `make check` runs unchanged.
 
-v2.0.0 (Story 13.9, no scheduled date yet) flips the model:
+v2.0.0 (Story 13.9, no scheduled date yet) flips the model: it removes ALL `HAS_<LANG>` blocks and per-language Dockerfile bits from `dev-toolchain` core. Every language becomes plugin-based. The plan as it stands today:
 
-- Remove the in-core `HAS_KOTLIN` blocks and Kotlin Dockerfile bits. Same for every other core language as we extract them.
-- Ship `devrail-init migrate --to v2` to walk consumer `.devrail.yml` files: any `languages:` entry that's no longer in core gets moved to `plugins:` with the appropriate plugin source pinned.
+- Retire the in-core `HAS_<LANG>` paths in one cliff at the major bump.
+- Ship `devrail-init migrate --to v2` to walk consumer `.devrail.yml` files and rewrite `languages:` entries as `plugins:` references with appropriate sources pinned.
 - Major version bump signals the breaking change.
 
-Between now and then, every other core language gets the same extraction treatment (Swift, Ruby, Go, etc.). Each will follow the recipe documented from this Kotlin pass. We'll likely ship them as separate v1.x minor releases so the migration burden is incremental rather than one big v2 cliff.
+How (and how many of) the other core languages get extracted into reference plugins between now and then is still being scoped. Story 13.7 covered Kotlin only; we'll learn from the Kotlin extraction before committing to a fixed schedule for Swift, Ruby, Go, and the rest.
 
 ## Try it
 
