@@ -114,5 +114,5 @@ These are deferred to later phases:
 ## Next steps
 
 - Read the [canonical plugin authoring guide](https://github.com/devrail-dev/devrail-standards/blob/main/standards/contributing.md#contributing-a-plugin) for field-by-field details, container integration patterns, and the pre-publish checklist.
-- Read the [plugin architecture design doc](https://github.com/devrail-dev/dev-toolchain/blob/main/docs/plugin-architecture.md) for the full rationale and lifecycle.
+- Read the [plugin architecture design doc](https://github.com/devrail-dev/devrail-standards/blob/main/_bmad-output/planning-artifacts/plugin-architecture-design.md) for the full rationale and lifecycle.
 - See the [`plugins:` schema documentation](https://github.com/devrail-dev/devrail-standards/blob/main/standards/devrail-yml-schema.md) for the consumer-side declaration shape.

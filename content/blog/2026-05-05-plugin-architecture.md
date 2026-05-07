@@ -4,7 +4,7 @@ date: 2026-05-05
 description: "DevRail v1.10 introduces a plugin architecture so anyone can ship a new language or tool integration without forking dev-toolchain. Loader, lockfile, extended-image build, and execution dispatch all in one container, one make check."
 ---
 
-For the first eighteen months of DevRail, every new language meant a PR against `dev-toolchain` -- a Dockerfile change, an install script, Makefile blocks for `_lint` / `_format` / `_test` / `_security`, a standards doc, and a release. That worked while we were stabilizing the eight core ecosystems (Python, Bash, Terraform, Ansible, Ruby, Go, JavaScript/TypeScript, Rust, and most recently Swift and Kotlin), but it doesn't scale to the long tail of languages and tools real teams use.
+Up to now, every new language in DevRail has meant a PR against `dev-toolchain` -- a Dockerfile change, an install script, Makefile blocks for `_lint` / `_format` / `_test` / `_security`, a standards doc, and a release. That worked through the ten core ecosystems we shipped from MVP through v1.9 (Python, Bash, Terraform, Ansible, Ruby, Go, JavaScript/TypeScript, Rust, Swift, and Kotlin), but it doesn't scale to the long tail of languages and tools real teams use.
 
 **v1.10.6 ships a plugin architecture.** Anyone can now publish a `devrail-plugin-<name>` git repo, and any DevRail-managed project can declare it in `.devrail.yml` and pick up new tools at the next `make check`. No fork, no PR, no waiting on a release. The "one container, one make check" guarantee holds throughout.
 
@@ -29,20 +29,19 @@ plugins:
 
 1. **Loader (Story 13.2)** validates `plugin.devrail.yml` against schema_version 1, enforcing `devrail_min_version` and per-target shape.
 2. **Resolver + lockfile (Story 13.3)** resolves `rev:` to an immutable SHA, fetches the plugin tree to a content-addressed cache, and records the resolved metadata in `.devrail.lock`. Branch refs are rejected. Tag-rebases are detected via content_hash mismatch.
-3. **Extended-image build (Story 13.4)** generates a project-local `Dockerfile.devrail` that layers each plugin's apt / COPY / ENV / install_script onto `ghcr.io/devrail-dev/dev-toolchain:v1`, then builds `devrail-local:<hash-of-dockerfile>` via BuildKit. Cache hits are free; first builds take 30 s -- 2 min depending on the plugin.
+3. **Extended-image build (Story 13.4)** generates a project-local `Dockerfile.devrail` that layers each plugin's apt / COPY / ENV / install_script onto `ghcr.io/devrail-dev/dev-toolchain:v1`, then builds `devrail-local:<hash-of-dockerfile>` via BuildKit. Cache hits are instant; first builds depend entirely on the plugin's install script (whatever ktlint / cargo / npm / etc. take to run plus the cost of any apt packages or `copy_from_builder` payloads).
 4. **Execution loop (Story 13.5)** dispatches each plugin's matching target inside the existing `_lint` / `_format` / `_fix` / `_test` / `_security` recipes, with gate evaluation, `{paths}` interpolation, per-language overrides, and JSON aggregation into the same envelope as core results. Consumers can't tell from the JSON output which results came from core and which from a plugin.
 
 `DEVRAIL_FAIL_FAST=1` short-circuits on plugin failures the same as core. Workspaces without `plugins:` in `.devrail.yml` see byte-identical behavior to v1.9.x -- the loader writes an empty cache, the dispatcher exits immediately, no extra events.
 
 ## Why now
 
-Three forces aligned:
+Two reasons:
 
 - **The core surface stabilized.** With ten languages shipped (the most recent two -- Swift and Kotlin -- landed in March) the patterns for "what goes in `_lint`, `_test`, etc." are clear enough to expose as a contract.
-- **The container model is cheaper than people think.** BuildKit content-addresses every layer; an unchanged plugin set is an instant cache hit. We benchmarked Elixir + Rust + Swift in the same project and the second `make check` was within 200 ms of the first -- the entire build pipeline boils down to a `docker image inspect`.
-- **Real teams have real tools we shouldn't ship.** Mojo. Zig. Roc. Crystal. Internal DSLs. Every one of these comes up in conversation; none of them belongs in `dev-toolchain` core. A plugin gives them a first-class home with the same UX as the languages we do ship.
+- **Caching makes the container model cheap.** BuildKit content-addresses every layer; an unchanged plugin set is an instant cache hit -- on a cache hit, `make check`'s entire plugin overhead boils down to a `docker image inspect`.
 
-The architecture is documented in detail in the [design doc on GitHub](https://github.com/devrail-dev/dev-toolchain/blob/main/docs/plugin-architecture.md). The TL;DR: we surveyed Terraform providers, GitHub Actions, pre-commit, and pip extras, then picked declarative YAML manifests + git-repo distribution + immutable refs + a single execution mode (extended container image). The single-mode choice is deliberate -- DevRail's value proposition is one container, one make check, and we kept it.
+The architecture is documented in detail in the [design doc on GitHub](https://github.com/devrail-dev/devrail-standards/blob/main/_bmad-output/planning-artifacts/plugin-architecture-design.md). The TL;DR: we surveyed Terraform providers, GitHub Actions, and pre-commit hooks, then picked declarative YAML manifests + git-repo distribution + immutable refs + a single execution mode (extended container image). The single-mode choice is deliberate -- DevRail's value proposition is one container, one make check, and we kept it.
 
 ## Authoring a plugin
 
