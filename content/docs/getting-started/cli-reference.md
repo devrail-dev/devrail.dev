@@ -143,6 +143,29 @@ fail_fast: false
 log_format: json
 ```
 
+### Optional container-runtime keys
+
+These keys customize how the toolchain container runs. All are no-ops when omitted:
+
+```yaml
+# Pass extra environment variables into the container.
+env:
+  RAILS_ENV: test
+  DATABASE_HOST: myapp-pg
+
+# Attach the container to a user-defined Docker network so it can reach a
+# sibling service container (e.g. a Postgres at hostname `myapp-pg` during
+# `make test`). Single network name.
+docker_network: myapp-test
+
+# Mount additional host paths or named volumes. List of `docker -v` specs.
+docker_volumes:
+  - ./fixtures:/workspace/fixtures
+  - shared-cache:/cache
+```
+
+See the [.devrail.yml schema](https://github.com/devrail-dev/devrail-standards/blob/main/standards/devrail-yml-schema.md) for the full key reference.
+
 ## Examples
 
 ```bash
