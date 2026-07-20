@@ -14,7 +14,7 @@ languageCode = "en-us"
 [params]
   description = "Opinionated development standards for teams that ship with AI agents"
   github_repo = "https://github.com/devrail-dev/devrail.dev"
-  github_project_repo = "https://github.com/devrail-dev"
+  github_project_repo = "https://github.com/devrail-dev/devrail.dev"
   offlineSearch = false
   images = ["images/devrail-icon.png"]
 

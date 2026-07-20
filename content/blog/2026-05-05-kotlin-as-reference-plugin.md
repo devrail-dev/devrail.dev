@@ -4,7 +4,7 @@ date: 2026-05-05
 description: "v1.11 ships devrail-plugin-kotlin — the first language ecosystem moved out of dev-toolchain core into a standalone plugin repo. It proves the plugin model end-to-end and gives future contributors a working extraction recipe."
 ---
 
-A few hours after [v1.10 introduced the plugin architecture](/blog/2026-05-05-plugin-architecture/), v1.11 ships the first proof. **`devrail-plugin-kotlin`** is now a separate repo, a separate release cadence, and -- for consumers who declare it -- the canonical way to use Kotlin tooling under DevRail.
+A few hours after [v1.10 introduced the plugin architecture](/blog/2026/05/plugin-architecture-v1.10-ships/), v1.11 ships the first proof. **`devrail-plugin-kotlin`** is now a separate repo, a separate release cadence, and -- for consumers who declare it -- the canonical way to use Kotlin tooling under DevRail.
 
 In v1.11, the extraction is **additive**: dev-toolchain still ships Kotlin in core (so existing `languages: [kotlin]` consumers see zero change). v2.0.0 will retire the in-core path and make the plugin the only path. This release is the rehearsal.
 

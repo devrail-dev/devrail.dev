@@ -135,4 +135,4 @@ Plugin signing (cosign-style signature verification opt-in) is a separate track 
 
 If you build a plugin we should know about, open a PR against the (forthcoming) `awesome-devrail` discovery list. For now, drop it in your team's repo or publish on GitHub and link it from your README.
 
-The full [plugin architecture design doc](https://github.com/devrail-dev/dev-toolchain/blob/main/docs/plugin-architecture.md) and the [v1.10.6 changelog entry](https://github.com/devrail-dev/dev-toolchain/blob/main/CHANGELOG.md) cover the contract in detail. Questions, plugin authors who want feedback, or edge cases we should think about -- as always, open an issue.
+The full [plugin architecture design doc](https://github.com/devrail-dev/devrail-standards/blob/main/_bmad-output/planning-artifacts/plugin-architecture-design.md) and the [v1.10.6 changelog entry](https://github.com/devrail-dev/dev-toolchain/blob/main/CHANGELOG.md) cover the contract in detail. Questions, plugin authors who want feedback, or edge cases we should think about -- as always, open an issue.
