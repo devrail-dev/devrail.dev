@@ -102,6 +102,8 @@ See the full [OpenClaw integration guide](/docs/getting-started/agents/#openclaw
 
 Your agents don't read your conventions. They skip your linters, ignore your formatters, and commit code that fails CI. DevRail gives them one instruction and one gate -- `make check` -- that enforces every standard automatically. Same contract for your agents, your CI, and you.
 
+[Current project status](/docs/project-status/) tracks the v1 release line, public repository activity, and the GitLab v0.1.0 migration baseline rollout.
+
 {{% /blocks/section %}}
 
 {{% blocks/section color="white" type="row" %}}
@@ -148,6 +150,7 @@ Per-language standards define which tools run, how they are configured, and what
 - [Quick Start Guide](/docs/getting-started/) -- Set up a new or existing project
 - [Standards Reference](/docs/standards/) -- Per-language tooling conventions
 - [Container Documentation](/docs/container/) -- How the dev-toolchain works
+- [Project Status](/docs/project-status/) -- Current release and migration roadmap
 - [Contributing](/docs/contributing/) -- Help improve DevRail
 
 {{% /blocks/section %}}

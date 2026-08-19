@@ -13,6 +13,7 @@ Welcome to the DevRail documentation. These guides cover everything you need to 
 ## Sections
 
 - **[Getting Started](/docs/getting-started/)** -- Quick start guides for new projects, retrofitting existing repos, and AI agent setup
+- **[Project Status](/docs/project-status/)** -- Current release line, repository activity, and GitLab migration roadmap
 - **[Standards](/docs/standards/)** -- Per-language reference pages for Python, Bash, Terraform, Ansible, Ruby, and universal security tools
 - **[Container](/docs/container/)** -- How to use the dev-toolchain container image
 - **[Templates](/docs/templates/)** -- How to use the GitHub and GitLab project templates
