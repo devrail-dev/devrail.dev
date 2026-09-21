@@ -4,7 +4,7 @@ date: 2026-08-18
 description: "DevRail v1 remains active on the v1.12 release line, and GitLab adoption work is being normalized around a v0.1.0 migration baseline."
 ---
 
-DevRail's public docs have been quiet while the v1 release line kept moving. This update brings the site back in line with the current state of the project: the `dev-toolchain` v1.12 line is active, the latest public v1.12 tag observed is `v1.12.13`, and GitLab adoption work is now being tracked around a practical v0.1.0 migration baseline.
+DevRail's public docs have been quiet while the v1 release line kept moving. This update brings the site back in line with the current state of the project: the `dev-toolchain` v1.12 line is active, the latest public v1.12 release and tag observed are `v1.12.19`, and GitLab adoption work is now being tracked around a practical v0.1.0 migration baseline.
 
 ## What changed on the site
 
