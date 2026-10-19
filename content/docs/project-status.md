@@ -26,6 +26,9 @@ The public repositories remain the canonical open-source surfaces:
 | [devrail.dev](https://github.com/devrail-dev/devrail.dev) | Public documentation site |
 | [github-repo-template](https://github.com/devrail-dev/github-repo-template) | Public GitHub bootstrap template |
 | [gitlab-repo-template](https://gitlab.com/devrail-dev/gitlab-repo-template) | Public GitLab bootstrap template |
+| [devrail-plugin-kotlin](https://github.com/devrail-dev/devrail-plugin-kotlin) | Kotlin reference plugin |
+| [devrail-router](https://github.com/devrail-dev/devrail-router) | Active local-first LLM router release line |
+| [pre-commit-conventional-commits](https://github.com/devrail-dev/pre-commit-conventional-commits) | Conventional Commit validation hook |
 
 ## GitLab v0.1.0 Migration Baseline
 
