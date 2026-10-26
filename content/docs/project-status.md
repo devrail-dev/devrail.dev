@@ -10,8 +10,8 @@ DevRail v1 is stable for current adopters. The public site, templates, standards
 ## Current Release Line
 
 - Public container release line: `ghcr.io/devrail-dev/dev-toolchain:v1`
-- Latest successful public v1.12 release: `v1.12.24`
-- Latest public v1.12 tag observed: `v1.12.25` (publish workflow in progress)
+- Latest successful public v1.12 release: [`v1.12.25`](https://github.com/devrail-dev/dev-toolchain/releases/tag/v1.12.25) (published October 19, 2026)
+- Release status verified October 26, 2026. Weekly container builds may be in progress; a new tag alone does not confirm publication. See the [build workflow](https://github.com/devrail-dev/dev-toolchain/actions/workflows/build.yml) for live progress.
 - Current generated tool-version page: [Tool Versions](/docs/container/versions/)
 - Compatibility posture: v1 remains backward-compatible; breaking language/plugin changes are reserved for v2.
 
