@@ -29,7 +29,7 @@ jobs:
           go-version: '>=1.21'
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           # Node 22 — postcss-cli's bin script now passes --permission,
           # which Node 20 rejects as "bad option" and breaks Hugo's
